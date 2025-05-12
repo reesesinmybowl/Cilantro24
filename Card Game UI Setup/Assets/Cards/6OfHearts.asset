@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardName: 6 of Hearts
   cardValue: 6
-  cardTexture: {fileID: 0}
+  cardTexture: {fileID: 2800000, guid: eb682eff412a040269377a77eb0c7a9b, type: 3}
   suit: 0

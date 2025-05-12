@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardName: 2 of Diamonds
   cardValue: 2
-  cardTexture: {fileID: 0}
+  cardTexture: {fileID: 2800000, guid: 3bba316157f6c49ce85fc736441d9944, type: 3}
   suit: 2
