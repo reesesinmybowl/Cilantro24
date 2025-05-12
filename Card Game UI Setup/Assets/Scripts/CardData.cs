@@ -13,6 +13,6 @@ public class CardData : ScriptableObject
 {
     public string cardName;
     public int cardValue; // 1 = Ace, etc.
-    public Texture cardTexture;
+    public Texture2D cardTexture;
     public Suit suit;
 }

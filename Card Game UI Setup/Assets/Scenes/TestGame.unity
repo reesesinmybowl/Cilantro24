@@ -976,7 +976,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: b4cf84e71246349f183664c3a98a3966, type: 2}
   - {fileID: 11400000, guid: 27b6d98d821af4510a14711d2452b833, type: 2}
   cardPrefab: {fileID: 3307544056383809888, guid: 7e3e73748efe14d4ea2fc6678ccbf937, type: 3}
-  spawnOrigin: {fileID: 992415609}
+  spawnPoint: {fileID: 992415609}
 --- !u!4 &1667135912
 Transform:
   m_ObjectHideFlags: 0
