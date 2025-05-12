@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardName: 7 of Clubs
   cardValue: 7
-  cardTexture: {fileID: 0}
+  cardTexture: {fileID: 2800000, guid: 28314270e97134996837efa1be3ce213, type: 3}
   suit: 3

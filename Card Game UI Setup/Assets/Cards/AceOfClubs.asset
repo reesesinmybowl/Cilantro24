@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardName: Ace of Clubs
   cardValue: 1
-  cardTexture: {fileID: 0}
+  cardTexture: {fileID: 2800000, guid: e86fa9a894ac848569c75a20b64a7a19, type: 3}
   suit: 3

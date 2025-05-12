@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardName: Ace of Diamonds
   cardValue: 1
-  cardTexture: {fileID: 0}
+  cardTexture: {fileID: 2800000, guid: c5dd9c46db61e4813add8a2d2cbad180, type: 3}
   suit: 2

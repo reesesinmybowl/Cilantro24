@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardName: King of Diamonds
   cardValue: 13
-  cardTexture: {fileID: 0}
+  cardTexture: {fileID: 2800000, guid: cf1d94472a57c4077bed27e309edf223, type: 3}
   suit: 2

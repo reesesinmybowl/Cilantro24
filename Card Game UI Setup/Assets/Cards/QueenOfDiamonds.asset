@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardName: Queen of Diamonds
   cardValue: 12
-  cardTexture: {fileID: 0}
+  cardTexture: {fileID: 2800000, guid: 7b1db2451c3b24e98a21da559706c7a8, type: 3}
   suit: 2

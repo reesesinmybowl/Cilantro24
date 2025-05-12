@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardName: 7 of Spades
   cardValue: 7
-  cardTexture: {fileID: 0}
+  cardTexture: {fileID: 2800000, guid: 942c6f0c0a299469881690e094bfa665, type: 3}
   suit: 1

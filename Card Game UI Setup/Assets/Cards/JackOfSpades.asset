@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardName: Jack of Spades
   cardValue: 11
-  cardTexture: {fileID: 0}
+  cardTexture: {fileID: 2800000, guid: 2eb2f53e093ce4ad0b126086ae6fa3be, type: 3}
   suit: 1

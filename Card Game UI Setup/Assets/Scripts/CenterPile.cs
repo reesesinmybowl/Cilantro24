@@ -13,8 +13,10 @@ public class CenterPile : MonoBehaviour
 
         currentCardData = data;
 
-        currentCardObject = Instantiate(cardPrefab, transform.position, Quaternion.Euler(90, 0, 0));
+        currentCardObject = Instantiate(cardPrefab, transform.position, Quaternion.Euler(0, 0, 0));
         currentCardObject.GetComponent<CardDisplay>().Setup(data);
+        
+        Debug.Log($"🃏 Spawned center card: {data.cardName} (Suit: {data.suit}, Value: {data.cardValue})");
     }
 
     public bool CanAcceptCard(CardData playedCard)

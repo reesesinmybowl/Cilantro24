@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardName: Jack of Hearts
   cardValue: 11
-  cardTexture: {fileID: 0}
+  cardTexture: {fileID: 2800000, guid: 1cbed9e0c01b24338a948b6d9ad278f7, type: 3}
   suit: 0

@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardName: Queen of Clubs
   cardValue: 12
-  cardTexture: {fileID: 0}
+  cardTexture: {fileID: 2800000, guid: d245c3cb4793f4d67a8f490b6cff1857, type: 3}
   suit: 3
