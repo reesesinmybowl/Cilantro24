@@ -19,23 +19,16 @@ public class CardDropZone : MonoBehaviour
             Debug.LogWarning("Missing cards or centerPile reference.");
         }
     }
-
     void OnTriggerEnter(Collider other)
     {
         CardDisplay display = other.GetComponent<CardDisplay>();
-        if (display != null)
-        {
-            CardData data = display.GetCardData();
+        if (display == null) return;
 
-            if (centerPile.CanAcceptCard(data))
-            {
-                centerPile.PlayCard(data);
-                Destroy(other.gameObject); // Remove card from player's hand
-            }
-            else
-            {
-                Debug.Log("❌ Cannot play " + data.cardName + " on current pile.");
-            }
+        CardData data = display.GetCardData();
+
+        if (centerPile.CanAcceptCard(data))
+        {
+            centerPile.PlayCard(data, other.gameObject); // <- this MUST happen
         }
     }
 }

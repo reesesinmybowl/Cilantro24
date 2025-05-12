@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class CardDrag : MonoBehaviour
 {
@@ -6,20 +7,31 @@ public class CardDrag : MonoBehaviour
     private bool isDragging = false;
     private float zOffset;
     private Vector3 dragOffset;
+    private MeshRenderer meshRenderer;
+
+    private float hoverY = 0.2f;  // stays way above everything
 
     void Start()
     {
         mainCam = Camera.main;
+        meshRenderer = GetComponent<MeshRenderer>();
     }
 
     void OnMouseDown()
     {
         isDragging = true;
 
-        // Save offset between card position and click point
+        if (meshRenderer != null)
+        {
+            meshRenderer.shadowCastingMode = ShadowCastingMode.Off;
+            meshRenderer.sortingOrder = 999;
+        }
+
         zOffset = mainCam.WorldToScreenPoint(transform.position).z;
+
         Vector3 mousePoint = Input.mousePosition;
         mousePoint.z = zOffset;
+
         dragOffset = transform.position - mainCam.ScreenToWorldPoint(mousePoint);
     }
 
@@ -29,13 +41,21 @@ public class CardDrag : MonoBehaviour
 
         Vector3 mousePoint = Input.mousePosition;
         mousePoint.z = zOffset;
-        Vector3 worldPos = mainCam.ScreenToWorldPoint(mousePoint) + dragOffset;
 
-        transform.position = new Vector3(worldPos.x, transform.position.y, worldPos.z); // keeps card level
+        Vector3 worldPos = mainCam.ScreenToWorldPoint(mousePoint) + dragOffset;
+        transform.position = new Vector3(worldPos.x, hoverY, worldPos.z);
     }
 
     void OnMouseUp()
     {
         isDragging = false;
+
+        if (meshRenderer != null)
+        {
+            meshRenderer.shadowCastingMode = ShadowCastingMode.On;
+            meshRenderer.sortingOrder = 0;
+        }
+
+        // Removed the line that forces Y = 0.01f — let the drop zone handle final placement
     }
 }
