@@ -3,27 +3,20 @@ using UnityEngine;
 public class CardDisplay : MonoBehaviour
 {
     public MeshRenderer meshRenderer;
+    private CardData cardData;
 
     public void Setup(CardData data)
     {
-        if (data.cardTexture == null)
-        {
-            Debug.LogWarning("Card texture is missing for: " + data.cardName);
-            return;
-        }
+        cardData = data;
 
-        // Create a new material with the URP Unlit shader
-        Shader urpUnlitShader = Shader.Find("Universal Render Pipeline/Unlit");
-        if (urpUnlitShader == null)
-        {
-            Debug.LogError("URP Unlit shader not found.");
-            return;
-        }
+        Shader urpUnlit = Shader.Find("Universal Render Pipeline/Unlit");
+        Material mat = new Material(urpUnlit);
+        mat.SetTexture("_BaseMap", cardData.cardTexture);
+        meshRenderer.material = mat;
+    }
 
-        Material newMaterial = new Material(urpUnlitShader);
-        newMaterial.SetTexture("_BaseMap", data.cardTexture);
-        meshRenderer.material = newMaterial;
-
-        Debug.Log("Applied texture: " + data.cardTexture.name + " to card: " + data.cardName);
+    public CardData GetCardData()
+    {
+        return cardData;
     }
 }
