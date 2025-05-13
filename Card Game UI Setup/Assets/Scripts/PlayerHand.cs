@@ -14,6 +14,7 @@ public class PlayerHand : MonoBehaviour
 
     void Start()
     {
+        Shuffle(handCards);  // Shuffle the cards when starting
         DisplayHand();
     }
 
@@ -43,5 +44,20 @@ public class PlayerHand : MonoBehaviour
             Destroy(card);
         }
         spawnedCards.Clear();
+    }
+
+    // Shuffle function using Fisher-Yates algorithm
+    public void Shuffle(List<CardData> list)
+    {
+        System.Random rng = new System.Random();
+        int n = list.Count;
+        while (n > 1)
+        {
+            n--;
+            int k = rng.Next(n + 1);
+            CardData value = list[k];
+            list[k] = list[n];
+            list[n] = value;
+        }
     }
 }
