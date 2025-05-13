@@ -1,43 +1,28 @@
 using UnityEngine;
-using UnityEngine.Rendering;
 
+[RequireComponent(typeof(Rigidbody), typeof(Collider))]
 public class CardDrag : MonoBehaviour
 {
     private Camera mainCam;
+    private Rigidbody rb;
     private bool isDragging = false;
     private float zOffset;
-    private Vector3 dragOffset;
-    private MeshRenderer meshRenderer;
-    private CardDisplay cardDisplay; // Reference to CardDisplay
-
-    private float hoverY = 0.2f;
-    private float liftedY = 0.5f;
 
     void Start()
     {
         mainCam = Camera.main;
-        meshRenderer = GetComponent<MeshRenderer>();
-        cardDisplay = GetComponent<CardDisplay>();
+        rb = GetComponent<Rigidbody>();
     }
 
     void OnMouseDown()
     {
         isDragging = true;
-
-        if (meshRenderer != null)
-        {
-            meshRenderer.shadowCastingMode = ShadowCastingMode.Off;
-        }
-
-        if (cardDisplay != null)
-        {
-            cardDisplay.FlipToFront();
-        }
+        rb.useGravity = false;
+        rb.linearVelocity = Vector3.zero;
+        rb.angularVelocity = Vector3.zero;
+        rb.isKinematic = true; // prevent physics from fighting during drag
 
         zOffset = mainCam.WorldToScreenPoint(transform.position).z;
-        Vector3 mousePoint = Input.mousePosition;
-        mousePoint.z = zOffset;
-        dragOffset = transform.position - mainCam.ScreenToWorldPoint(mousePoint);
     }
 
     void OnMouseDrag()
@@ -46,22 +31,14 @@ public class CardDrag : MonoBehaviour
 
         Vector3 mousePoint = Input.mousePosition;
         mousePoint.z = zOffset;
-
-        Vector3 worldPos = mainCam.ScreenToWorldPoint(mousePoint) + dragOffset;
-        transform.position = new Vector3(worldPos.x, liftedY, worldPos.z);
+        Vector3 targetPos = mainCam.ScreenToWorldPoint(mousePoint);
+        transform.position = targetPos + Vector3.up * 0.2f; // hover slightly
     }
 
     void OnMouseUp()
     {
         isDragging = false;
-
-        if (meshRenderer != null)
-        {
-            meshRenderer.shadowCastingMode = ShadowCastingMode.On;
-        }
-
-        // Optionally: You could keep the card face up or back to face down here
-        // Example:
-        // cardDisplay.ShowBack();
+        rb.isKinematic = false;
+        rb.useGravity = true;
     }
 }
