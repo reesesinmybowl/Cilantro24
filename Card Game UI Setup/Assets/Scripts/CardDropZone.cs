@@ -19,6 +19,7 @@ public class CardDropZone : MonoBehaviour
             Debug.LogWarning("Missing cards or centerPile reference.");
         }
     }
+
     void OnTriggerEnter(Collider other)
     {
         CardDisplay display = other.GetComponent<CardDisplay>();
@@ -26,9 +27,7 @@ public class CardDropZone : MonoBehaviour
 
         CardData data = display.GetCardData();
 
-        if (centerPile.CanAcceptCard(data))
-        {
-            centerPile.PlayCard(data, other.gameObject); // <- this MUST happen
-        }
+        // Now ALWAYS accept the card (no validation)
+        centerPile.PlayCard(data, other.gameObject);
     }
 }

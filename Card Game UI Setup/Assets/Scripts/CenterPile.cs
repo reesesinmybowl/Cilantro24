@@ -16,34 +16,40 @@ public class CenterPile : MonoBehaviour
 
         currentCardData = data;
 
-        // 🧱 Fixed spawn position and rotation for top-down view
-        Vector3 spawnPos = transform.position + new Vector3(0, 0.01f, 0); // fixed Y to avoid Z-fighting
-        Quaternion spawnRot = Quaternion.Euler(0, 0, 0); // flat, face-up card
+        // Spawn at pile position (physics will handle rest)
+        Vector3 spawnPos = transform.position + Vector3.up * 0.1f;
+        Quaternion spawnRot = Quaternion.Euler(0, 0, 0);
 
         currentCardObject = Instantiate(cardPrefab, spawnPos, spawnRot);
         currentCardObject.GetComponent<CardDisplay>().Setup(data);
 
+        // Optional physics setup
+        Rigidbody rb = currentCardObject.GetComponent<Rigidbody>();
+        if (rb != null)
+        {
+            rb.useGravity = true;
+            rb.isKinematic = false;
+        }
+
         Debug.Log($"🃏 Spawned center card: {data.cardName} (Suit: {data.suit}, Value: {data.cardValue})");
     }
 
-    public bool CanAcceptCard(CardData playedCard)
-    {
-        return playedCard.suit == currentCardData.suit || playedCard.cardValue == currentCardData.cardValue + 1;
-    }
-    
     public void PlayCard(CardData newCard, GameObject cardObject)
     {
-        if (!CanAcceptCard(newCard)) return;
-
         currentCardData = newCard;
 
-        float stackHeight = 0.02f + (pileCount * 0.02f);
-        Vector3 pilePos = transform.position;
-        cardObject.transform.position = new Vector3(pilePos.x, stackHeight, pilePos.z);
-        cardObject.transform.rotation = Quaternion.Euler(90f, 180f, 0f);
+        // Let physics handle position — don't force it
+        cardObject.transform.SetParent(transform);
+
+        // Optional: raise render layer slightly so new card shows clearly
+        MeshRenderer renderer = cardObject.GetComponent<MeshRenderer>();
+        if (renderer != null)
+        {
+            renderer.sortingOrder = 1 + transform.childCount;
+        }
 
         pileCount++;
 
-        Debug.Log($"After drop: card position is {cardObject.transform.position}");
+        Debug.Log($"Card added to pile via physics: {newCard.cardName}");
     }
 }
