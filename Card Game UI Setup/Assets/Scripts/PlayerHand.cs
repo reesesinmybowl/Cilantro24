@@ -22,13 +22,14 @@ public class PlayerHand : MonoBehaviour
     {
         ClearHand();
 
-        // Center the cards around the hand position
-        float startX = -((handCards.Count - 1) * spacing) / 2f;
+        Vector3 stackPosition = transform.position; // bunken ligger præcis her
 
         for (int i = 0; i < handCards.Count; i++)
         {
-            Vector3 pos = transform.position + new Vector3(startX + i * spacing, 0, 0);
-            Quaternion rot = Quaternion.Euler(0, 0, 0); // flat, face-up for top-down
+            // Lille Y offset hvis du vil kunne ane flere kort, ellers sæt 0f
+            Vector3 pos = stackPosition + new Vector3(0, i * 0.01f, 0);
+
+            Quaternion rot = Quaternion.Euler(0, 0, 0); // kortene ligger fladt
 
             GameObject card = Instantiate(cardPrefab, pos, rot, transform);
             card.GetComponent<CardDisplay>().Setup(handCards[i]);

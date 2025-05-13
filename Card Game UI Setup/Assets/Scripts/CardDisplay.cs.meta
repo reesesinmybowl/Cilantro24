@@ -1,2 +1,13 @@
 fileFormatVersion: 2
 guid: d7b3226d5dc5e4fd1b7e42513b0de543
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - meshRenderer: {instanceID: 0}
+  - backTexture: {fileID: 2800000, guid: 2a701f689f0e341138b6d61dbf206d53, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
