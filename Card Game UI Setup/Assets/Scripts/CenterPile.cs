@@ -1,10 +1,8 @@
-using System;
 using UnityEngine;
 
 public class CenterPile : MonoBehaviour
 {
     public GameObject cardPrefab;
-    public GameObject objectToSpawn;
     public CardData currentCardData;
     private GameObject currentCardObject;
     private int pileCount = 0;
@@ -40,59 +38,10 @@ public class CenterPile : MonoBehaviour
     {
         currentCardData = newCard;
 
-        if (pileCount > 0)
-        {
-            // Suit check
-            switch (currentCardData.suit)
-            {
-                case Suit.Hearts:
-                    Debug.Log("♥️ Hearts");
-                    break;
-                case Suit.Spades:
-                    Debug.Log("♠️ Spades");
-                    break;
-                case Suit.Diamonds:
-                    Debug.Log("♦️ Diamonds");
-                    break;
-                case Suit.Clubs:
-                    Debug.Log("♣️ Clubs");
-                    break;
-            }
-
-            int value = currentCardData.cardValue;
-
-            switch (value)
-            {
-                case 1:
-                    Debug.Log("Rule for Ace");
-                    if (objectToSpawn != null)
-                    {
-                        Vector3 spawnPos = transform.position + new Vector3(0, 1f, 0);
-                        Instantiate(objectToSpawn, spawnPos, Quaternion.identity);
-                    }
-                    break;
-                case 7:
-                    Debug.Log("🎯 7 played — spawning object");
-                    if (objectToSpawn != null)
-                    {
-                        Vector3 spawnPos = transform.position + new Vector3(0, 1f, 0);
-                        Instantiate(objectToSpawn, spawnPos, Quaternion.identity);
-                    }
-                    break;
-                default:
-                    Debug.Log($"Number card: {value}");
-                    break;
-            }
-
-            if (currentCardData.suit == Suit.Hearts && currentCardData.cardValue == 1)
-            {
-                Debug.Log("🔥 This is the Ace of Hearts!");
-            }
-        }
-
-        // Card always gets added visually, no matter pileCount
+        // Let physics handle position — don't force it
         cardObject.transform.SetParent(transform);
 
+        // Optional: raise render layer slightly so new card shows clearly
         MeshRenderer renderer = cardObject.GetComponent<MeshRenderer>();
         if (renderer != null)
         {
@@ -103,5 +52,4 @@ public class CenterPile : MonoBehaviour
 
         Debug.Log($"Card added to pile via physics: {newCard.cardName}");
     }
-
 }
