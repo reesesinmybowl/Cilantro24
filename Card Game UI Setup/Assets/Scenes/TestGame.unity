@@ -508,6 +508,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cardPrefab: {fileID: 3307544056383809888, guid: 7e3e73748efe14d4ea2fc6678ccbf937, type: 3}
+  objectToSpawn: {fileID: 0}
   currentCardData: {fileID: 11400000, guid: 39d3a0438fdfb406db7bdd9bfdac98da, type: 2}
 --- !u!4 &929999034
 Transform:
