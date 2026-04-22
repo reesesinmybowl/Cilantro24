@@ -19,7 +19,7 @@ This MVP sets up the Strava connection and activity browsing flow for a Next.js 
 
 ## Environment variables
 
-Create a `.env.local` file in the project root:
+Create a `.env.local` file in `Cilantro26/`:
 
 ```bash
 STRAVA_CLIENT_ID=your_strava_client_id
@@ -32,22 +32,28 @@ STRAVA_SCOPES=read,activity:read_all
 
 ## Local setup
 
-1. Install dependencies:
+1. From the parent repository, move into this app folder:
+
+```bash
+cd Cilantro26
+```
+
+2. Install dependencies:
 
 ```bash
 npm install
 ```
 
-2. Start the development server:
+3. Start the development server:
 
 ```bash
 npm run dev
 ```
 
-3. Open `http://localhost:3000`.
-4. Click **Connect with Strava**.
-5. Authorize the app in Strava.
-6. You should land on `/dashboard` and see recent activities.
+4. Open `http://localhost:3000`.
+5. Click **Connect with Strava**.
+6. Authorize the app in Strava.
+7. You should land on `/dashboard` and see recent activities.
 
 ## Notes for MVP token storage
 
